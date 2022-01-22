@@ -20,27 +20,50 @@ namespace Business.Concrete
 
         public void Add(Car car)
         {
-            _carDal.Add(car);
+            if (CheckAdCar(car))
+                _carDal.Add(car); 
         }
 
-        public void Delete(int carId)
-        {
-            _carDal.Delete(carId);
-        }
+       
 
         public List<Car> GetAll()
         {
             return _carDal.GetAll();
         }
 
-        public Car GetById(int id)
+        public List<Car> GetCarsByBrandId(int brandId)
         {
-           return  _carDal.GetById(id);
+            return _carDal.GetAll(c => c.BrandId == brandId);
         }
 
-        public void Update(Car car)
+        public List<Car> GetCarsByColorId(int colorId)
         {
-            _carDal.Update(car);
+            return _carDal.GetAll(c => c.ColorId == colorId);
+        }
+
+
+        private bool CheckAdCar(Car car)
+        {
+            bool dogruMu = true;
+            if(car.Description.Length<2)
+            {
+                Console.WriteLine("Araba ismi minimum 2 uzunluğunda olmalı");
+                dogruMu = false;
+            }
+                
+            if (car.DailyPrice <= 0)
+            {
+                Console.WriteLine("Araba günlük fiyatı 0 dan büyük olmalı");
+                dogruMu = false;
+            }
+                
+           else
+            {
+                Console.WriteLine("Araba eklendi");
+                dogruMu = true;
+            }
+            return dogruMu;
+               
         }
     }
 }
