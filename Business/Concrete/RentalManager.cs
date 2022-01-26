@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.Constans;
 using Core.Utilities;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -25,13 +26,13 @@ namespace Business.Concrete
             {
 
                 Console.WriteLine("Araç kiralanamadı");
-                return new ErrorResult("Araç kiralanamadı");
+                return new ErrorResult(Messages.DontAddCar);
             }
             else
             {
                 _rentalDal.Add(rental);
                 Console.WriteLine("Kiralanadı");
-                return new SuccessResult("Araç kiralandı");
+                return new SuccessResult(Messages.RentalAdded);
             }
            
         }
@@ -39,7 +40,7 @@ namespace Business.Concrete
         public IResult Delete(Rental rental)
         {
             _rentalDal.Delete(rental);
-            return new SuccessResult();
+            return new SuccessResult(Messages.RentalDeleted);
         }
 
         public IDataResult<List<Rental>> GetAll()
@@ -64,7 +65,7 @@ namespace Business.Concrete
         public IResult Update(Rental rental)
         {
             _rentalDal.Update(rental);
-            return new SuccessResult();
+            return new SuccessResult(Messages.RentalUpdated);
            
         }
 

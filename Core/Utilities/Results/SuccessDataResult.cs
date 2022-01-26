@@ -17,7 +17,7 @@ namespace Core.Utilities
 
         }
 
-        public SuccessDataResult(string message) : base (default,true,message)
+        public SuccessDataResult(string message) : base(default,true,message)
         {
 
         }
