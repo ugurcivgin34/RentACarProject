@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constans;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac;
 using Core.Utilities;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -21,15 +23,13 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
+        [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car car)
         {
-            if (CheckAdCar(car))
-            {
-                _carDal.Add(car);
-                return new SuccessResult(Messages.BrandAdded);
-            }
-            return new ErrorResult();
-                
+
+            _carDal.Add(car);
+            return new SuccessResult(Messages.BrandAdded);
+
         }
 
         public IResult Delete(Car car)
@@ -40,7 +40,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Car>> GetAll()
         {
-            return new SuccessDataResult<List<Car>>( _carDal.GetAll());
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll());
         }
 
         public IDataResult<Car> GetById(int carId)
@@ -69,28 +69,6 @@ namespace Business.Concrete
             return new SuccessResult(Messages.CarUpdated);
         }
 
-        private bool CheckAdCar(Car car)
-        {
-            bool dogruMu = true;
-            if (car.Description.Length < 2)
-            {
-                Console.WriteLine("Araba ismi minimum 2 uzunluğunda olmalı");
-                dogruMu = false;
-            }
-
-            if (car.DailyPrice <= 0)
-            {
-                Console.WriteLine("Araba günlük fiyatı 0 dan büyük olmalı");
-                dogruMu = false;
-            }
-
-            else
-            {
-                Console.WriteLine("Araba eklendi");
-                dogruMu = true;
-            }
-            return dogruMu;
-
-        }
     }
 }
+
