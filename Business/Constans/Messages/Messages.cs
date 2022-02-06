@@ -17,6 +17,7 @@ namespace Business.Constans
         public static string CarAdded = "Araba Eklendi";
         public static string CarDeleted = "Araba Silindi";
         public static string CarUpdated = "Araba Güncellendi";
+        public static string CarNameAlreadyExists = "Aynı isimde açıkama olamaz";
 
         public static string ColorAdded = "Renk Eklendi";
         public static string ColorDeleted = "Renk Silindi";
@@ -43,5 +44,6 @@ namespace Business.Constans
         public static string SuccessfulLogin = "Başarılı giriş";
         public static string UserAlreadyExists = "Kullanıcı mevcut";
         public static string AccessTokenCreated = "Token oluşturuldu";
+       
     }
 }
