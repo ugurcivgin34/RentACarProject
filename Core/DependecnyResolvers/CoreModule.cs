@@ -1,6 +1,8 @@
 ﻿using Core.CrossCuttingConcers.Cashing;
 using Core.CrossCuttingConcers.Cashing.Microsoft;
+using Core.Utilities.Helpers.FileHelper;
 using Core.Utilities.IoC;
+using Core.Utilities.Security.JWT;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -19,6 +21,8 @@ namespace Core.DependecnyResolvers
             serviceCollection.AddMemoryCache();
             serviceCollection.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             serviceCollection.AddSingleton<ICacheManager, MemoryCacheManager>();
+            serviceCollection.AddSingleton<ITokenHelper, JwtHelper>();
+            serviceCollection.AddSingleton<IFileHelper, FileHelperManager>();
             serviceCollection.AddSingleton<Stopwatch>();
 
         }
