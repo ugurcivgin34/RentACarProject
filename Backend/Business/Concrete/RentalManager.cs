@@ -59,6 +59,7 @@ namespace Business.Concrete
 
         public IResult Update(Rental rental)
         {
+            rental.ReturnDate = DateTime.Now;
             _rentalDal.Update(rental);
             return new SuccessResult(Messages.RentalUpdated);
 
