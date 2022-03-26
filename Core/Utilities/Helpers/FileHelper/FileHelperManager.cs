@@ -32,6 +32,7 @@ namespace Core.Utilities.Helpers.FileHelper
         {
             if (file.Length > 0)
             {
+                return null;
                 if (!Directory.Exists(root))
                 {                          
                                         

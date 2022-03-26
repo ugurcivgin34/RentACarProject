@@ -10,8 +10,9 @@ namespace Entities.Concrete
     public class Payment : IEntity
     {
         public int Id { get; set; }
-        public int CreditCard { get; set; }
         public int CustomerId { get; set; }
+        public int CreditCardId { get; set; }
+        public double TotalAmount { get; set; }
 
     }
 }

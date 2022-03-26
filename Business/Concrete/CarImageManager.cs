@@ -34,6 +34,11 @@ namespace Business.Concrete
                 return result;
             }
 
+            if (file == null)
+            {
+                return new ErrorResult("Lütfen Foto Ekleyiniz");
+            }
+
             carImage.ImagePath = _fileHelper.Upload(file, PathConstant.ImagesPath);
             carImage.Date = DateTime.Now;
             _carImageDal.Add(carImage);
